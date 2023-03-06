@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://SpideyMod/characters/Spidey/projectiles/SimpleProjectileDefaultState.gd" type="Script" id=1]
+[ext_resource path="res://sound/common/slash4.wav" type="AudioStream" id=2]
+[ext_resource path="res://mechanics/Hitbox.gd" type="Script" id=3]
+[ext_resource path="res://projectile/BaseProjectile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 5 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/max_color_distance = 0.01
+shader_param/super_dim = false
+shader_param/use_outline = false
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="SpideyWebBall" instance=ExtResource( 4 )]
+material = SubResource( 1 )
+
+[node name="Sprite" parent="Flip" index="0"]
+frames = SubResource( 2 )
+
+[node name="Default" parent="StateMachine" index="0"]
+script = ExtResource( 1 )
+sprite_animation = ""
+
+[node name="H2" type="Node2D" parent="StateMachine/Default" index="0"]
+z_index = 1000
+script = ExtResource( 3 )
+width = 10
+height = 10
+damage_in_combo = 0
+hitstun_ticks = 100
+victim_hitlag = 4
+damage_proration = 1
+hit_sound = ExtResource( 2 )
+dir_x = "0.90"
+dir_y = "-0.4"
+knockback = ".5"
+aerial_hit_state = "HurtGrounded"
+start_tick = 7
+active_ticks = 1
+always_on = true
