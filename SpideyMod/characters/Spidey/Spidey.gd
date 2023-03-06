@@ -6,9 +6,9 @@ var grappling_hook_projectile
 var used_grappling_hook = false
 var pulling = false
 
-const HOOK_DISABLE_DIST = "300"
-const HOOK_PULL_SPEED = "25"
-const MAX_PULL_SPEED = "25"
+const HOOK_DISABLE_DIST = "32"
+const HOOK_PULL_SPEED = "50"
+const MAX_PULL_SPEED = "50"
 const MAX_PULL_UPWARD_SPEED = "0"
 
 func process_extra(extra):
@@ -43,8 +43,12 @@ func tick():
 		if is_in_hurt_state(false):
 			hook.disable()
 		var hook_pos = obj_local_center(hook)
+		#print_debug("The value of the weird thing: ", fixed.lt("300", HOOK_DISABLE_DIST))
+		
+		#Disables hook if Spidey gets too close to hooked target
 		if hook.is_locked and hook.current_state().current_tick > 5 and fixed.lt(fixed.vec_len(str(hook_pos.x), str(hook_pos.y)), HOOK_DISABLE_DIST):
 			hook.disable()
+			
 		if pulling:
 			var dir = fixed.normalized_vec_times(str(hook_pos.x), str(hook_pos.y), HOOK_PULL_SPEED)
 			apply_force(dir.x, dir.y)

@@ -334,6 +334,7 @@ script = ExtResource( 2 )
 gravity = "0.8"
 max_air_speed = "10"
 max_fall_speed = "15"
+num_air_movements = 4
 character_portrait = ExtResource( 80 )
 player_extra_params_scene = ExtResource( 95 )
 
@@ -391,7 +392,7 @@ script = ExtResource( 91 )
 apply_forces = true
 apply_fric = true
 apply_grav = true
-anim_length = 14
+anim_length = 6
 projectile_scene = ExtResource( 93 )
 projectile_pos_x = 16
 projectile_pos_y = -16

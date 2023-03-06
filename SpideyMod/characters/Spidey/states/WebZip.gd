@@ -1,6 +1,6 @@
 extends CharacterState
 
-const SPEED = "15"
+const SPEED = "30"
 
 export  var push_back_amount = "-2.0"
 
@@ -16,7 +16,8 @@ func process_projectile(projectile):
 	projectile.set_grounded(false)
 	var force = xy_to_dir(data.x, data.y, SPEED)
 	var vel = host.get_vel()
-	projectile.apply_force(fixed.add(vel.x, force.x), fixed.add(vel.y, force.y))
+	#projectile.apply_force(fixed.add(vel.x, force.x), fixed.add(vel.y, force.y))
+	projectile.set_vel(force.x,force.y)
 	host.grappling_hook_projectile = projectile.obj_name
 	projectile.start_y = host.get_pos().y
 
