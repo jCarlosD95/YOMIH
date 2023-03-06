@@ -30,6 +30,7 @@ var name_paths = {
 	"Cowboy":"res://characters/swordandgun/SwordGuy.tscn", 
 	"Wizard":"res://characters/wizard/Wizard.tscn", 
 	"Robot":"res://characters/robo/Robot.tscn", 
+	"Spidey":"res://SpideyMod/characters/Spidey/Spidey.tscn",
 }
 
 var paid_characters = [
