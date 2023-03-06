@@ -1,10 +1,15 @@
 extends Fighter
-
+#Used in WallCling.gd
 var cling_x = 0
 var cling_y = 0
-var grappling_hook_projectile
+
+#Used in WebZip.gd and other Web Zip-related scripts
+var grappling_hook_projectile = null
 var used_grappling_hook = false
 var pulling = false
+
+var lasso_projectile = null
+
 
 const HOOK_DISABLE_DIST = "32"
 const HOOK_PULL_SPEED = "50"

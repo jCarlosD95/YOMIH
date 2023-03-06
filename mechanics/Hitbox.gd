@@ -206,6 +206,12 @@ func deactivate():
 func to_data():
 	return HitboxData.new(self)
 
+#To be a counter hit:
+#1) Defender's move must be able to counter an attacker
+#2) Defender must be a fighter, can't be a projectile.
+#3) Defender must have initiative
+#4) Attacker must have a hitbox active
+#5) Attacker's state must be counterable
 func is_counter_hit():
 	return can_counter_hit and (host.is_in_group("Fighter") and host.initiative and host.opponent.current_state().has_hitboxes and host.opponent.current_state().can_be_counterhit)
 

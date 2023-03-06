@@ -1,6 +1,6 @@
 extends CharacterState
 
-const LASSO_SCENE = preload("res://characters/swordandgun/projectiles/Lasso.tscn")
+const LASSO_SCENE = preload("res://SpideyMod/characters/Spidey/projectiles/WebPull.tscn")
 const LASSO_LIFT = 6
 const THROW_SPEED = 14
 
@@ -32,7 +32,7 @@ func on_lasso_hit(_opponent):
 	var opp_pos = host.opponent.get_hurtbox_center()
 	var obj = host.objs_map[host.lasso_projectile]
 	obj.set_pos(opp_pos.x, opp_pos.y)
-	host.change_state("LassoHit")
+	host.change_state("WPHit")
 
 
 func _tick():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=111 format=2]
 
 [ext_resource path="res://characters/BaseChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpideyMod/characters/Spidey/Spidey.gd" type="Script" id=2]
@@ -95,6 +95,17 @@
 [ext_resource path="res://SpideyMod/characters/Spidey/projectiles/WebZip.tscn" type="PackedScene" id=93]
 [ext_resource path="res://SpideyMod/characters/Spidey/ActionUIData/WebZipActionUIData.tscn" type="PackedScene" id=94]
 [ext_resource path="res://SpideyMod/characters/Spidey/SpideyExtra.tscn" type="PackedScene" id=95]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/WebPull.gd" type="Script" id=96]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/WPPull.gd" type="Script" id=97]
+[ext_resource path="res://characters/ThrowBox.gd" type="Script" id=98]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/WPReel.gd" type="Script" id=99]
+[ext_resource path="res://characters/states/ThrowState.gd" type="Script" id=100]
+[ext_resource path="res://characters/swordandgun/sprites/action_buttons/lasso.png" type="Texture" id=101]
+[ext_resource path="res://characters/states/CharState.gd" type="Script" id=102]
+[ext_resource path="res://characters/swordandgun/sounds/lasso.wav" type="AudioStream" id=103]
+[ext_resource path="res://mechanics/Hitbox.gd" type="Script" id=104]
+[ext_resource path="res://sound/common/slash3.wav" type="AudioStream" id=105]
+[ext_resource path="res://characters/swordandgun/sprites/action_buttons/lasso_reel.png" type="Texture" id=106]
 [ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=135]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -383,6 +394,8 @@ script = ExtResource( 89 )
 apply_forces = true
 apply_fric = true
 apply_grav = true
+sprite_animation = "Gkick"
+anim_length = 10
 
 [node name="WebTrap" type="Node2D" parent="StateMachine" index="50"]
 script = ExtResource( 90 )
@@ -409,3 +422,97 @@ interrupt_into_string = "Grounded
 GroundedAttack
 Aerial
 AerialAttack"
+
+[node name="WebPull" type="Node2D" parent="StateMachine" index="52"]
+script = ExtResource( 96 )
+__meta__ = {
+"_editor_description_": ""
+}
+anim_length = 45
+sfx = ExtResource( 103 )
+sfx_tick = 7
+type = 2
+button_texture = ExtResource( 101 )
+air_type = 2
+iasa_at = 20
+next_state_on_hold = false
+burst_cancellable = false
+instant_cancellable = false
+interrupt_from_string = "Grounded
+Aerial
+GroundedSpecial
+AerialSpecial"
+interrupt_into_string = "Grounded
+Aerial
+"
+
+[node name="WPHold" type="Node2D" parent="StateMachine" index="53"]
+script = ExtResource( 100 )
+__meta__ = {
+"_editor_description_": ""
+}
+apply_forces = true
+apply_fric = true
+apply_grav = true
+fallback_state = "IzunaDrop"
+type = 1
+air_type = 2
+throw_techable = true
+interrupt_into_string = "LassoThrow
+"
+start_throw_pos_x = 16
+
+[node name="WPPull" type="Node2D" parent="StateMachine" index="54"]
+script = ExtResource( 97 )
+
+[node name="Hitbox" type="Node2D" parent="StateMachine/WPPull" index="0"]
+z_index = 1000
+script = ExtResource( 104 )
+damage = 40
+hitlag_ticks = 0
+victim_hitlag = 4
+cancellable = false
+hit_sound = ExtResource( 105 )
+knockback = "8.0"
+grounded_hit_state = "HurtAerial"
+knockdown = true
+knockdown_extends_hitstun = false
+active_ticks = 1
+
+[node name="WPReel" type="Node2D" parent="StateMachine" index="55"]
+script = ExtResource( 99 )
+__meta__ = {
+"_editor_description_": ""
+}
+endless = true
+reset_momentum = true
+title = "Reel"
+type = 2
+button_texture = ExtResource( 106 )
+air_type = 2
+burst_cancellable = false
+reversible = false
+instant_cancellable = false
+interrupt_from_string = "Lasso"
+
+[node name="ThrowBox" type="Node2D" parent="StateMachine/WPReel" index="0"]
+script = ExtResource( 98 )
+increment_combo = false
+knockdown_extends_hitstun = false
+active_ticks = 1
+
+[node name="WPHit" type="Node2D" parent="StateMachine" index="56"]
+script = ExtResource( 102 )
+__meta__ = {
+"_editor_description_": ""
+}
+fallback_state = "WPReel"
+sprite_animation = "WPReel"
+reset_momentum = true
+show_in_menu = false
+type = 3
+air_type = 2
+interrupt_into_string = "Lasso"
+
+[node name="YouLabel" parent="." index="5"]
+visible = true
