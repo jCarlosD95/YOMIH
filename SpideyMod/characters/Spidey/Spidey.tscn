@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=2]
+[gd_scene load_steps=112 format=2]
 
 [ext_resource path="res://characters/BaseChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpideyMod/characters/Spidey/Spidey.gd" type="Script" id=2]
@@ -106,6 +106,7 @@
 [ext_resource path="res://mechanics/Hitbox.gd" type="Script" id=104]
 [ext_resource path="res://sound/common/slash3.wav" type="AudioStream" id=105]
 [ext_resource path="res://characters/swordandgun/sprites/action_buttons/lasso_reel.png" type="Texture" id=106]
+[ext_resource path="res://SpideyMod/characters/Spidey/ActionUIData/WebPullActionUIData.tscn" type="PackedScene" id=107]
 [ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=135]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -431,7 +432,9 @@ __meta__ = {
 anim_length = 45
 sfx = ExtResource( 103 )
 sfx_tick = 7
+title = "Web Pull"
 type = 2
+data_ui_scene = ExtResource( 107 )
 button_texture = ExtResource( 101 )
 air_type = 2
 iasa_at = 20
@@ -444,7 +447,8 @@ GroundedSpecial
 AerialSpecial"
 interrupt_into_string = "Grounded
 Aerial
-"
+GroundedAttack
+AerialAttack"
 
 [node name="WPHold" type="Node2D" parent="StateMachine" index="53"]
 script = ExtResource( 100 )
@@ -454,7 +458,6 @@ __meta__ = {
 apply_forces = true
 apply_fric = true
 apply_grav = true
-fallback_state = "IzunaDrop"
 type = 1
 air_type = 2
 throw_techable = true
@@ -513,6 +516,8 @@ show_in_menu = false
 type = 3
 air_type = 2
 interrupt_into_string = "Lasso"
+
+[node name="IzunaDrop" type="Node2D" parent="StateMachine" index="57"]
 
 [node name="YouLabel" parent="." index="5"]
 visible = true
