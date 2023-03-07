@@ -1,8 +1,8 @@
 extends CharacterState
 
 const LASSO_SCENE = preload("res://SpideyMod/characters/Spidey/projectiles/WebPull.tscn")
-const LASSO_LIFT = 6
-const THROW_SPEED = 50
+#const LASSO_LIFT = 6
+const THROW_SPEED = 40
 
 var lasso_hit = false
 var lasso_hit_frame = 0
@@ -20,16 +20,17 @@ func _frame_7():
 	var obj = host.spawn_object(LASSO_SCENE, 16, - 16)
 	host.lasso_projectile = obj.obj_name
 	#obj.apply_force_relative(THROW_SPEED, - LASSO_LIFT)
-	
 	#Get direction from action UI data & apply it to lasso 
 	if data:
-		print_debug("Before STR: ", typeof(data.x), "\nAFTER STR: ", typeof(str(data.x)))
 		var force = xy_to_dir(str(data.x), str(data.y), str(THROW_SPEED))
 		obj.set_vel(force.x, force.y)
 	var vel = host.get_vel()
 	obj.apply_force(vel.x, vel.y)
 	obj.connect("lasso_hit", self, "on_lasso_hit")
-
+	
+	
+	
+	
 func on_lasso_hit(_opponent):
 
 
@@ -39,7 +40,6 @@ func on_lasso_hit(_opponent):
 	var obj = host.objs_map[host.lasso_projectile]
 	obj.set_pos(opp_pos.x, opp_pos.y)
 	host.change_state("WPHit")
-
 
 func _tick():
 	if host.lasso_projectile:
