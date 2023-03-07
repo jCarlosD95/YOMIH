@@ -20,12 +20,17 @@ func _frame_7():
 	var obj = host.spawn_object(LASSO_SCENE, 16, - 16)
 	host.lasso_projectile = obj.obj_name
 	#obj.apply_force_relative(THROW_SPEED, - LASSO_LIFT)
+	
 	#Get direction from action UI data & apply it to lasso 
 	if data:
 		var force = xy_to_dir(str(data.x), str(data.y), str(THROW_SPEED))
 		obj.set_vel(force.x, force.y)
+		
+	#Add Spidey's velocity to the projectile's 
 	var vel = host.get_vel()
-	obj.apply_force(vel.x, vel.y)
+	obj.apply_force(vel.x, vel.y);
+	
+	
 	obj.connect("lasso_hit", self, "on_lasso_hit")
 	
 	

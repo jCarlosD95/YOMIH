@@ -518,6 +518,3 @@ air_type = 2
 interrupt_into_string = "Lasso"
 
 [node name="IzunaDrop" type="Node2D" parent="StateMachine" index="57"]
-
-[node name="YouLabel" parent="." index="5"]
-visible = true
