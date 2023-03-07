@@ -21,6 +21,7 @@ func _tick():
 	var opp_pos = host.obj_local_center(host.opponent)
 	throw_box.x = opp_pos.x * host.get_facing_int()
 	throw_box.y = opp_pos.y
+	#If, at any point after the start of this, opponent is within grabbing distance, grabbed is true. Return WPHold
 	if current_tick > 1 and fixed.lt(fixed.vec_len(str(opp_pos.x), str(opp_pos.y)), GRAB_DISTANCE):
 		grabbed = true
 		return "WPHold"
@@ -40,3 +41,4 @@ func _exit():
 		host.lasso_projectile = null
 	if not grabbed:
 		host.opponent.state_machine.queue_state("Wait")
+			

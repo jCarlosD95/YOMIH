@@ -69,9 +69,13 @@ func tick():
 		
 		
 func _draw():
-	var hook = obj_from_name(grappling_hook_projectile)
-	if hook:
-		draw_line(to_local(get_center_position_float()), to_local(hook.get_center_position_float()), Color("#ffffff"), 2.0)
-		
-	
-	
+#	var hook = obj_from_name(grappling_hook_projectile)
+#	if hook:
+#		draw_line(to_local(get_center_position_float()), to_local(hook.get_center_position_float()), Color("#ffffff"), 2.0)
+	lineDraw(grappling_hook_projectile)
+	lineDraw(lasso_projectile)	
+
+func lineDraw(object):
+	var obj = obj_from_name(object)
+	if obj:
+		draw_line(to_local(get_center_position_float()), to_local(obj.get_center_position_float()), Color("#ffffff"), 2.0)

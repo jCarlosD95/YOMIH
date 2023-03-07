@@ -99,7 +99,7 @@
 [ext_resource path="res://SpideyMod/characters/Spidey/states/WPPull.gd" type="Script" id=97]
 [ext_resource path="res://characters/ThrowBox.gd" type="Script" id=98]
 [ext_resource path="res://SpideyMod/characters/Spidey/states/WPReel.gd" type="Script" id=99]
-[ext_resource path="res://characters/states/ThrowState.gd" type="Script" id=100]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/WPHold.gd" type="Script" id=100]
 [ext_resource path="res://characters/swordandgun/sprites/action_buttons/lasso.png" type="Texture" id=101]
 [ext_resource path="res://characters/states/CharState.gd" type="Script" id=102]
 [ext_resource path="res://characters/swordandgun/sounds/lasso.wav" type="AudioStream" id=103]
@@ -455,15 +455,6 @@ script = ExtResource( 100 )
 __meta__ = {
 "_editor_description_": ""
 }
-apply_forces = true
-apply_fric = true
-apply_grav = true
-type = 1
-air_type = 2
-throw_techable = true
-interrupt_into_string = "LassoThrow
-"
-start_throw_pos_x = 16
 
 [node name="WPPull" type="Node2D" parent="StateMachine" index="54"]
 script = ExtResource( 97 )
@@ -516,5 +507,3 @@ show_in_menu = false
 type = 3
 air_type = 2
 interrupt_into_string = "Lasso"
-
-[node name="IzunaDrop" type="Node2D" parent="StateMachine" index="57"]
