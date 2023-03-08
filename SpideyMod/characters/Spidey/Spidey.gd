@@ -32,12 +32,13 @@ func detach():
 
 func tick():
 	.tick()
-	
+
 	#To activate wall cling, Spidey must be:
 	#touching the wall
 	#Not currently or previously in the middle of a WallCling
 	#not currently hurt
 	if touching_wall and not is_in_hurt_state() and current_state().state_name != "WallCling" and previous_state().state_name != "WallCling" :
+		change_stance_to("WallCling")
 		change_state("WallCling")
 		
 	

@@ -11,10 +11,12 @@ func _enter():
 	host.cling_y = host.get_pos().y	
 	
 	host.air_movements_left = 4;
+	host.change_stance_to("WallCling")
 
 
 func _tick():
 	#Every frame, reset character's position to where they first hit the wall
 	host.set_pos(host.cling_x, host.cling_y)
+
 	
 	
