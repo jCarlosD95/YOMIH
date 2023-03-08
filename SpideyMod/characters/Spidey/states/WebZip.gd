@@ -1,6 +1,7 @@
 extends CharacterState
 
 const SPEED = "30"
+const MAX_DISTANCE = 180.0
 
 export  var push_back_amount = "-2.0"
 
@@ -16,8 +17,7 @@ func process_projectile(projectile):
 	projectile.set_grounded(false)
 	var force = xy_to_dir(data.x, data.y, SPEED)
 	var vel = host.get_vel()
-	#projectile.apply_force(fixed.add(vel.x, force.x), fixed.add(vel.y, force.y))
-	projectile.set_vel(force.x,force.y)
+	projectile.apply_force(fixed.add(vel.x, force.x), fixed.add(vel.y, force.y))
 	host.grappling_hook_projectile = projectile.obj_name
 	projectile.start_y = host.get_pos().y
 
@@ -28,6 +28,7 @@ func _tick():
 		host.apply_grav()
 		if host.is_grounded():
 			return "Landing"
+			
 
 func is_usable():
 	return host.grappling_hook_projectile == null and not host.used_grappling_hook and .is_usable()

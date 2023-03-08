@@ -22,6 +22,22 @@ func _tick():
 				if fixed.lt(fixed.vec_len(str(obj_pos.x), str(obj_pos.y)), LOCK_DISTANCE if not obj.is_in_group("Fighter") else CHARACTER_LOCK_DISTANCE):
 					lock(obj)
 					break
+					
+					
+	#Below code limits the length of the web to MAX_DISTANCE		:	
+	#calculate length between host and projectile
+	#First, get the positions of host and projectile
+		
+	#stores "Spidey's position".x-"projectile's position".x and "Spidey's position".y-"projectile's position".y
+	var pos = host.creator.obj_local_pos(host)
+	#Calculate length. Length = square root of ((x1-x2)^2 + (y1-y2)^2)
+	var xsqr = pow(pos.x, 2)
+	var ysqr = pow(pos.y,2)
+	var dist = pow((xsqr + ysqr), 0.5)
+	if dist > host.MAX_DISTANCE:
+		host.set_vel(0,0)
+		host.is_max_distance = true
+		lock()
 
 func _on_hit_something(obj, hitbox):
 	lock(obj)

@@ -11,6 +11,7 @@ func _frame_0():
 func _tick():
 	host.update_rotation()
 	var attached_to = host.obj_from_name(host.attached_to)
+	#NOTE: Add an "and isn't max_distance
 	if attached_to != null:
 		if attached_to.disabled:
 			host.unlock()

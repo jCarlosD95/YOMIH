@@ -4,10 +4,10 @@ onready var pull_button = $"%PullButton"
 
 onready var detach_button = $"%DetachButton"
 
-func _ready():
-
-	pull_button.connect("toggled", self, "_on_bomb_button_toggled")
-	detach_button.connect("toggled", self, "_on_bomb_button_toggled")
+#func _ready():
+#
+#	pull_button.connect("toggled", self, "_on_bomb_button_toggled")
+#	detach_button.connect("toggled", self, "_on_bomb_button_toggled")
 
 
 

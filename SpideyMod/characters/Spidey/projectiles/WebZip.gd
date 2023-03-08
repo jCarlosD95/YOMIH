@@ -1,6 +1,8 @@
 extends BaseProjectile
 
-const MAX_HEIGHT = 300
+const MAX_HEIGHT = 800
+const MAX_DISTANCE = 190
+var is_max_distance = false
 
 class_name WebZip
 
@@ -20,6 +22,8 @@ func tick():
 	.tick()
 	if get_pos().y < start_y - MAX_HEIGHT:
 		disable()
+		
+	
 
 func update_rotation():
 	var pos = creator.get_center_position_float()
