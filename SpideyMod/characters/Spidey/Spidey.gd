@@ -12,8 +12,8 @@ var lasso_projectile = null
 
 
 const HOOK_DISABLE_DIST = "32"
-const HOOK_PULL_SPEED = "50"
-const MAX_PULL_SPEED = "50"
+const HOOK_PULL_SPEED = "30"
+const MAX_PULL_SPEED = "30"
 const MAX_PULL_UPWARD_SPEED = "0"
 
 func process_extra(extra):

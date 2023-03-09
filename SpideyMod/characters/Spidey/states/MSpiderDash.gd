@@ -103,7 +103,7 @@ func _frame_5():
 	move_vec.y = end_pos.y - start_pos_y
 	var pos = host.get_pos_visual()
 	var particle_dir = Vector2(float(move_vec.x), float(move_vec.y)).normalized()
-	host.spawn_particle_effect(preload("res://characters/stickman/QuickSlashEffect.tscn"), Vector2(start_pos_x, start_pos_y - 13), particle_dir)
+	#host.spawn_particle_effect(preload("res://characters/stickman/QuickSlashEffect.tscn"), Vector2(start_pos_x, start_pos_y - 13), particle_dir)
 	host.update_data()
 
 func _frame_6():

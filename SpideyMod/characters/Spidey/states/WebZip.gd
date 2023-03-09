@@ -1,9 +1,9 @@
 extends CharacterState
 
-const SPEED = "30"
-const MAX_DISTANCE = 180.0
+const SPEED = "25"
+const MAX_DISTANCE = 160.0
 
-export  var push_back_amount = "-2.0"
+export  var push_back_amount = "0"
 
 var projectile_spawned = false
 
@@ -32,3 +32,8 @@ func _tick():
 
 func is_usable():
 	return host.grappling_hook_projectile == null and not host.used_grappling_hook and .is_usable()
+	
+#func _exit():
+#	#Reduce Spidey's velocity upon exiting WebZip state
+#	var vel = host.get_vel()
+#	host.set_vel(fixed.div(vel.x,"4"), fixed.div(vel.y,"4"))

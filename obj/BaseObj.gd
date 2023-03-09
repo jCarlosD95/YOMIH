@@ -411,21 +411,21 @@ func spawn_particle_effect_relative(particle_effect:PackedScene, pos:Vector2 = V
 	call_deferred("_spawn_particle_effect", particle_effect, pos + p, dir)
 
 
-#func _spawn_particle_effect(particle_effect:PackedScene, pos:Vector2, dir = Vector2.RIGHT):
-#	var obj = particle_effect.instance()
-#	add_child(obj)
-#	obj.tick()
-#	var facing = - 1 if dir.x < 0 else 1
-#	obj.position = pos
-#	if facing < 0:
-#		obj.rotation = (dir * Vector2( - 1, - 1)).angle()
-#	else :
-#		obj.rotation = dir.angle()
-#	obj.scale.x = facing
-#	remove_child(obj)
-#
-#	emit_signal("particle_effect_spawned", obj)
-#	return obj
+func _spawn_particle_effect(particle_effect:PackedScene, pos:Vector2, dir = Vector2.RIGHT):
+	var obj = particle_effect.instance()
+	add_child(obj)
+	obj.tick()
+	var facing = - 1 if dir.x < 0 else 1
+	obj.position = pos
+	if facing < 0:
+		obj.rotation = (dir * Vector2( - 1, - 1)).angle()
+	else :
+		obj.rotation = dir.angle()
+	obj.scale.x = facing
+	remove_child(obj)
+
+	emit_signal("particle_effect_spawned", obj)
+	return obj
 
 func get_camera():
 	var cameras = get_tree().get_nodes_in_group("Camera")
