@@ -2740,6 +2740,10 @@ force_tick = 10
 enter_force_dir_x = "1.0"
 enter_force_speed = "4.0"
 throw_positions = {
+ExtResource( 206 ): {
+"x": 13,
+"y": -10
+},
 ExtResource( 207 ): {
 "x": 15,
 "y": -10
@@ -2747,10 +2751,6 @@ ExtResource( 207 ): {
 ExtResource( 208 ): {
 "x": 14,
 "y": -11
-},
-ExtResource( 206 ): {
-"x": 13,
-"y": -10
 },
 ExtResource( 209 ): {
 "x": 32,
@@ -2791,14 +2791,6 @@ active_ticks = 1
 [node name="BackThrow" parent="StateMachine" index="82"]
 sprite_animation = "GroundedThrow"
 throw_positions = {
-ExtResource( 207 ): {
-"x": 14,
-"y": -9
-},
-ExtResource( 208 ): {
-"x": 13,
-"y": -12
-},
 ExtResource( 210 ): {
 "x": 37,
 "y": -7
@@ -2806,6 +2798,14 @@ ExtResource( 210 ): {
 ExtResource( 206 ): {
 "x": 12,
 "y": -10
+},
+ExtResource( 207 ): {
+"x": 14,
+"y": -9
+},
+ExtResource( 208 ): {
+"x": 13,
+"y": -12
 },
 ExtResource( 209 ): {
 "x": 32,

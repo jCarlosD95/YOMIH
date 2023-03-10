@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://characters/BaseChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpideyMod/characters/Spidey/Spidey.gd" type="Script" id=2]
@@ -113,6 +113,13 @@
 [ext_resource path="res://SpideyMod/characters/Spidey/ActionUIData/WallLeapActionUIData.tscn" type="PackedScene" id=111]
 [ext_resource path="res://characters/stickman/sprites/actionicons/slide_kick.png" type="Texture" id=112]
 [ext_resource path="res://sound/common/hit2.wav" type="AudioStream" id=113]
+[ext_resource path="res://SpideyMod/characters/Spidey/sprites/LowKick.png" type="Texture" id=114]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/LowKick.gd" type="Script" id=115]
+[ext_resource path="res://ui/ActionSelector/StateIcons/sweep.png" type="Texture" id=116]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/SpiderSting.gd" type="Script" id=117]
+[ext_resource path="res://SpideyMod/characters/Spidey/sprites/SpiderSting.png" type="Texture" id=118]
+[ext_resource path="res://sound/common/hit4.wav" type="AudioStream" id=119]
+[ext_resource path="res://ui/ActionSelector/StateIcons/uppercut.png" type="Texture" id=120]
 [ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=135]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -280,6 +287,11 @@ animations = [ {
 "name": "Landing",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 114 ) ],
+"loop": true,
+"name": "LowKick",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 81 ), ExtResource( 81 ), ExtResource( 81 ), ExtResource( 81 ), ExtResource( 81 ), ExtResource( 81 ), ExtResource( 81 ), ExtResource( 81 ), ExtResource( 75 ), ExtResource( 75 ), ExtResource( 75 ), ExtResource( 68 ), ExtResource( 68 ), ExtResource( 68 ), ExtResource( 75 ), ExtResource( 75 ), ExtResource( 75 ), ExtResource( 71 ) ],
 "loop": true,
 "name": "NunChukHeavy",
@@ -325,6 +337,11 @@ animations = [ {
 "name": "RollForward",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 118 ) ],
+"loop": true,
+"name": "SpiderSting",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 60 ) ],
 "loop": true,
 "name": "ThrowTech",
@@ -364,15 +381,11 @@ player_extra_params_scene = ExtResource( 95 )
 [node name="Sprite" parent="Flip" index="0"]
 material = SubResource( 2 )
 frames = SubResource( 3 )
-animation = "Gkick2"
-frame = 6
+animation = "SpiderSting"
 playing = true
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="Start" parent="StateMachine" index="0"]
-sprite_animation = "SpideyIdle"
 
 [node name="Roll" parent="StateMachine" index="4"]
 allowed_stances_string = "Normal
@@ -540,7 +553,57 @@ type = 3
 air_type = 2
 interrupt_into_string = "Lasso"
 
-[node name="GKick" type="Node2D" parent="StateMachine" index="57"]
+[node name="SpiderSting" type="Node2D" parent="StateMachine" index="57"]
+script = ExtResource( 117 )
+apply_forces = true
+apply_fric = true
+apply_grav = true
+sprite_animation = "SpiderSting"
+anim_length = 10
+force_dir_x = "2.0"
+force_dir_y = "-4.0"
+force_speed = "4"
+force_tick = 5
+title = "Spider Sting"
+type = 2
+button_texture = ExtResource( 120 )
+interrupt_from_string = "Grounded
+GroundedAttack"
+interrupt_into_string = "GroundedAttack
+AerialAttack"
+hit_cancel_into_string = "GroundedAttack
+GroundedSpecial
+GroundedSuper
+AerialAttack
+AerialSpecial
+AerialSuper
+Jump"
+
+[node name="Hitbox2" type="Node2D" parent="StateMachine/SpiderSting" index="0"]
+z_index = 1000
+script = ExtResource( 104 )
+x = 17
+y = -28
+width = 14
+height = 19
+damage = 60
+hitstun_ticks = 50
+hitlag_ticks = 6
+victim_hitlag = 6
+cancellable = false
+group = 1
+screenshake_amount = 5
+hit_sound = ExtResource( 119 )
+dir_x = "0"
+dir_y = "-2.5"
+knockback = "9.0"
+grounded_hit_state = "HurtAerial"
+knockdown = true
+knockdown_extends_hitstun = false
+start_tick = 6
+active_ticks = 3
+
+[node name="GKick" type="Node2D" parent="StateMachine" index="58"]
 script = ExtResource( 89 )
 apply_forces = true
 apply_fric = true
@@ -555,6 +618,13 @@ title = "Kick"
 type = 1
 button_texture = ExtResource( 112 )
 interrupt_from_string = "Grounded"
+hit_cancel_into_string = "GroundedAttack
+GroundedSpecial
+GroundedSuper
+AerialAttack
+AerialSpecial
+AerialSuper
+Jump"
 
 [node name="Hitbox" type="Node2D" parent="StateMachine/GKick" index="0"]
 z_index = 1000
@@ -568,13 +638,58 @@ hitstun_ticks = 20
 hitlag_ticks = 6
 victim_hitlag = 6
 damage_proration = 1
+hit_height = 0
+hit_sound = ExtResource( 113 )
+knockback = "5.0"
+start_tick = 5
+active_ticks = 8
+
+[node name="LowKick" type="Node2D" parent="StateMachine" index="59"]
+script = ExtResource( 115 )
+apply_forces = true
+apply_fric = true
+apply_grav = true
+sprite_animation = "LowKick"
+anim_length = 10
+sprite_anim_length = 10
+ticks_per_frame = 5
+force_dir_x = "6"
+force_speed = "3.0"
+force_tick = 4
+title = "Low Kick"
+type = 1
+button_texture = ExtResource( 116 )
+interrupt_from_string = "Grounded
+GroundedAttack"
+interrupt_into_string = "Grounded
+Aerial"
+hit_cancel_into_string = "GroundedAttack
+GroundedSpecial
+GroundedSuper
+AerialAttack
+AerialSpecial
+AerialSuper
+Jump"
+
+[node name="Hitbox" type="Node2D" parent="StateMachine/LowKick" index="0"]
+z_index = 1000
+script = ExtResource( 104 )
+x = 26
+y = -9
+width = 13
+height = -5
+damage = 70
+hitstun_ticks = 20
+hitlag_ticks = 6
+victim_hitlag = 6
+damage_proration = 1
 hit_height = 2
 hit_sound = ExtResource( 113 )
 knockback = "5.0"
 start_tick = 5
 active_ticks = 8
 
-[node name="MSpiderStart" type="Node2D" parent="StateMachine" index="58"]
+[node name="MSpiderStart" type="Node2D" parent="StateMachine" index="60"]
 
-[node name="MSpiderDash" type="Node2D" parent="StateMachine" index="59"]
+[node name="MSpiderDash" type="Node2D" parent="StateMachine" index="61"]
 script = ExtResource( 108 )

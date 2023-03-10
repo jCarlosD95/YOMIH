@@ -65,6 +65,7 @@ height = 5
 [node name="Default" parent="StateMachine" index="0"]
 script = ExtResource( 4 )
 apply_fric = true
+reset_momentum = true
 
 [node name="Hitbox" type="Node2D" parent="StateMachine/Default" index="0"]
 z_index = 1000
@@ -74,6 +75,7 @@ height = 4
 damage = 20
 hitstun_ticks = 8
 hitlag_ticks = 7
+active_ticks = -1
 always_on = true
 
 [node name="Locked" type="Node2D" parent="StateMachine" index="1"]
