@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=2]
+[gd_scene load_steps=134 format=2]
 
 [ext_resource path="res://characters/BaseChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpideyMod/characters/Spidey/Spidey.gd" type="Script" id=2]
@@ -120,6 +120,15 @@
 [ext_resource path="res://SpideyMod/characters/Spidey/sprites/SpiderSting.png" type="Texture" id=118]
 [ext_resource path="res://sound/common/hit4.wav" type="AudioStream" id=119]
 [ext_resource path="res://ui/ActionSelector/StateIcons/uppercut.png" type="Texture" id=120]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/Punch.gd" type="Script" id=121]
+[ext_resource path="res://ui/ActionSelector/StateIcons/punch.png" type="Texture" id=122]
+[ext_resource path="res://SpideyMod/characters/Spidey/sprites/SpideyPunch.png" type="Texture" id=123]
+[ext_resource path="res://ui/ActionSelector/StateIcons/divekick.png" type="Texture" id=124]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/DiveKick.gd" type="Script" id=125]
+[ext_resource path="res://HurtboxState.gd" type="Script" id=126]
+[ext_resource path="res://SpideyMod/characters/Spidey/sprites/SpideyDiveKick.png" type="Texture" id=127]
+[ext_resource path="res://SpideyMod/characters/Spidey/states/SwingKick.gd" type="Script" id=128]
+[ext_resource path="res://SpideyMod/characters/Spidey/sprites/Swingkick.png" type="Texture" id=129]
 [ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=135]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -322,6 +331,11 @@ animations = [ {
 "name": "ParryLow",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 123 ) ],
+"loop": true,
+"name": "Punch",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 61 ), ExtResource( 61 ), ExtResource( 61 ), ExtResource( 61 ), ExtResource( 63 ), ExtResource( 64 ) ],
 "loop": true,
 "name": "QuickSlash",
@@ -340,6 +354,16 @@ animations = [ {
 "frames": [ ExtResource( 118 ) ],
 "loop": true,
 "name": "SpiderSting",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 127 ) ],
+"loop": true,
+"name": "SpideyDiveKick",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 129 ) ],
+"loop": true,
+"name": "SwingKick",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 60 ) ],
@@ -381,7 +405,7 @@ player_extra_params_scene = ExtResource( 95 )
 [node name="Sprite" parent="Flip" index="0"]
 material = SubResource( 2 )
 frames = SubResource( 3 )
-animation = "SpiderSting"
+animation = "SwingKick"
 playing = true
 __meta__ = {
 "_edit_group_": true
@@ -450,7 +474,7 @@ apply_fric = true
 apply_grav = true
 anim_length = 6
 projectile_scene = ExtResource( 93 )
-projectile_pos_x = 16
+projectile_pos_x = 32
 projectile_pos_y = -16
 title = "Web Zip"
 type = 2
@@ -617,7 +641,10 @@ force_speed = "3"
 title = "Kick"
 type = 1
 button_texture = ExtResource( 112 )
-interrupt_from_string = "Grounded"
+interrupt_from_string = "Grounded
+GroundedAttack"
+interrupt_into_string = "Grounded
+Aerial"
 hit_cancel_into_string = "GroundedAttack
 GroundedSpecial
 GroundedSuper
@@ -693,3 +720,162 @@ active_ticks = 8
 
 [node name="MSpiderDash" type="Node2D" parent="StateMachine" index="61"]
 script = ExtResource( 108 )
+
+[node name="Punch" type="Node2D" parent="StateMachine" index="62"]
+script = ExtResource( 121 )
+apply_forces = true
+apply_fric = true
+apply_grav = true
+sprite_animation = "Punch"
+anim_length = 8
+enter_force_dir_x = "2.0"
+enter_force_speed = "2.0"
+title = "Punch"
+type = 1
+button_texture = ExtResource( 122 )
+interrupt_from_string = "Grounded
+GroundedAttack"
+interrupt_into_string = "Grounded
+Aerial"
+hit_cancel_into_string = "GroundedAttack
+GroundedSpecial
+GroundedSuper
+AerialAttack
+AerialSpecial
+AerialSuper
+Jump"
+
+[node name="Hitbox" type="Node2D" parent="StateMachine/Punch" index="0"]
+z_index = 1000
+script = ExtResource( 104 )
+x = 17
+y = -20
+width = -11
+height = -3
+damage = 70
+hitstun_ticks = 20
+hitlag_ticks = 6
+victim_hitlag = 6
+damage_proration = 1
+hit_sound = ExtResource( 113 )
+knockback = "5.0"
+start_tick = 5
+active_ticks = 8
+
+[node name="DiveKick" type="Node2D" parent="StateMachine" index="63"]
+script = ExtResource( 125 )
+__meta__ = {
+"_editor_description_": ""
+}
+apply_forces = true
+apply_fric = true
+apply_grav = true
+sprite_animation = "SpideyDiveKick"
+anim_length = 8
+enter_force_dir_x = ".5"
+enter_force_dir_y = "3.0"
+enter_force_speed = "2.0"
+reset_momentum = true
+title = "Dive Kick"
+type = 1
+button_texture = ExtResource( 124 )
+air_type = 1
+interrupt_from_string = "Aerial
+AerialAttack"
+interrupt_into_string = "Grounded
+Aerial"
+hit_cancel_into_string = "GroundedAttack
+GroundedSpecial
+GroundedSuper
+AerialAttack
+AerialSpecial
+AerialSuper
+Jump"
+
+[node name="Hitbox" type="Node2D" parent="StateMachine/DiveKick" index="0"]
+z_index = 1000
+script = ExtResource( 104 )
+x = 15
+y = 2
+width = -7
+height = 8
+damage = 70
+hitstun_ticks = 20
+hitlag_ticks = 6
+victim_hitlag = 6
+damage_proration = 1
+hit_height = 0
+hit_sound = ExtResource( 113 )
+knockback = "5.0"
+start_tick = 5
+active_ticks = 8
+
+[node name="HurtboxState" type="Node2D" parent="StateMachine/DiveKick" index="1"]
+z_index = 1000
+script = ExtResource( 126 )
+x = 7
+y = -16
+width = 6
+height = 16
+active_ticks = 5
+endless = true
+
+[node name="SwingKick" type="Node2D" parent="StateMachine" index="64"]
+script = ExtResource( 128 )
+__meta__ = {
+"_editor_description_": ""
+}
+apply_forces = true
+apply_fric = true
+sprite_animation = "SwingKick"
+anim_length = 15
+force_dir_y = "-1"
+force_speed = "1"
+force_tick = 6
+enter_force_dir_x = "3"
+enter_force_dir_y = "0"
+enter_force_speed = "4"
+reset_momentum = true
+title = "Swing Kick"
+type = 1
+button_texture = ExtResource( 124 )
+air_type = 2
+uses_air_movement = true
+interrupt_from_string = "Aerial
+AerialAttack"
+interrupt_into_string = "Grounded
+Aerial"
+hit_cancel_into_string = "GroundedAttack
+GroundedSpecial
+GroundedSuper
+AerialAttack
+AerialSpecial
+AerialSuper
+Jump"
+
+[node name="Hitbox" type="Node2D" parent="StateMachine/SwingKick" index="0"]
+z_index = 1000
+script = ExtResource( 104 )
+x = 20
+y = -9
+width = 9
+height = 6
+damage = 70
+hitstun_ticks = 20
+hitlag_ticks = 6
+victim_hitlag = 6
+damage_proration = 1
+hit_sound = ExtResource( 113 )
+knockback = "5.0"
+start_tick = 5
+active_ticks = 8
+
+[node name="HurtboxState" type="Node2D" parent="StateMachine/SwingKick" index="1"]
+z_index = 1000
+script = ExtResource( 126 )
+x = 7
+y = -16
+width = 6
+height = 16
+active_ticks = 5
+endless = true
