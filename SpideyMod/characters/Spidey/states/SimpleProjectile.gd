@@ -11,7 +11,7 @@ export var speed = 5
 export var lifetime = 900
 
 func _tick():
-	print_debug(current_tick)
+	#print_debug(current_tick)
 	if current_tick == spawn_tick:
 		var dir_data = null
 		if data != null:
