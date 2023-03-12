@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=2]
+[gd_scene load_steps=137 format=2]
 
 [ext_resource path="res://characters/BaseChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpideyMod/characters/Spidey/Spidey.gd" type="Script" id=2]
@@ -129,6 +129,9 @@
 [ext_resource path="res://SpideyMod/characters/Spidey/sprites/SpideyDiveKick.png" type="Texture" id=127]
 [ext_resource path="res://SpideyMod/characters/Spidey/states/SwingKick.gd" type="Script" id=128]
 [ext_resource path="res://SpideyMod/characters/Spidey/sprites/Swingkick.png" type="Texture" id=129]
+[ext_resource path="res://SpideyMod/characters/Spidey/sprites/Swingkick2.png" type="Texture" id=130]
+[ext_resource path="res://SpideyMod/characters/Spidey/sprites/Swingkick3.png" type="Texture" id=131]
+[ext_resource path="res://SpideyMod/characters/Spidey/projectiles/WebAnchor.tscn" type="PackedScene" id=132]
 [ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=135]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -366,6 +369,16 @@ animations = [ {
 "name": "SwingKick",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 130 ) ],
+"loop": true,
+"name": "SwingKick2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 131 ) ],
+"loop": true,
+"name": "SwingKick3",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 60 ) ],
 "loop": true,
 "name": "ThrowTech",
@@ -403,9 +416,10 @@ character_portrait = ExtResource( 80 )
 player_extra_params_scene = ExtResource( 95 )
 
 [node name="Sprite" parent="Flip" index="0"]
+visible = false
 material = SubResource( 2 )
 frames = SubResource( 3 )
-animation = "SwingKick"
+animation = "SpideyDiveKick"
 playing = true
 __meta__ = {
 "_edit_group_": true
@@ -606,9 +620,9 @@ Jump"
 [node name="Hitbox2" type="Node2D" parent="StateMachine/SpiderSting" index="0"]
 z_index = 1000
 script = ExtResource( 104 )
-x = 17
+x = 22
 y = -28
-width = 14
+width = 10
 height = 19
 damage = 60
 hitstun_ticks = 50
@@ -620,12 +634,21 @@ screenshake_amount = 5
 hit_sound = ExtResource( 119 )
 dir_x = "0"
 dir_y = "-2.5"
-knockback = "9.0"
 grounded_hit_state = "HurtAerial"
 knockdown = true
 knockdown_extends_hitstun = false
 start_tick = 6
 active_ticks = 3
+
+[node name="HurtboxState" type="Node2D" parent="StateMachine/SpiderSting" index="1"]
+z_index = 1000
+script = ExtResource( 126 )
+x = 7
+y = -16
+width = 6
+height = 16
+active_ticks = 5
+endless = true
 
 [node name="GKick" type="Node2D" parent="StateMachine" index="58"]
 script = ExtResource( 89 )
@@ -795,9 +818,9 @@ Jump"
 [node name="Hitbox" type="Node2D" parent="StateMachine/DiveKick" index="0"]
 z_index = 1000
 script = ExtResource( 104 )
-x = 15
-y = 2
-width = -7
+x = 7
+y = 6
+width = 5
 height = 8
 damage = 70
 hitstun_ticks = 20
@@ -813,7 +836,7 @@ active_ticks = 8
 [node name="HurtboxState" type="Node2D" parent="StateMachine/DiveKick" index="1"]
 z_index = 1000
 script = ExtResource( 126 )
-x = 7
+x = -2
 y = -16
 width = 6
 height = 16
@@ -827,7 +850,7 @@ __meta__ = {
 }
 apply_forces = true
 apply_fric = true
-sprite_animation = "SwingKick"
+sprite_animation = "SwingKick3"
 anim_length = 15
 force_dir_y = "-1"
 force_speed = "1"
@@ -836,6 +859,9 @@ enter_force_dir_x = "3"
 enter_force_dir_y = "0"
 enter_force_speed = "4"
 reset_momentum = true
+projectile_scene = ExtResource( 132 )
+projectile_pos_x = 30
+projectile_pos_y = -150
 title = "Swing Kick"
 type = 1
 button_texture = ExtResource( 124 )
@@ -856,8 +882,8 @@ Jump"
 [node name="Hitbox" type="Node2D" parent="StateMachine/SwingKick" index="0"]
 z_index = 1000
 script = ExtResource( 104 )
-x = 20
-y = -9
+x = 10
+y = -7
 width = 9
 height = 6
 damage = 70
@@ -873,9 +899,9 @@ active_ticks = 8
 [node name="HurtboxState" type="Node2D" parent="StateMachine/SwingKick" index="1"]
 z_index = 1000
 script = ExtResource( 126 )
-x = 7
+x = -1
 y = -16
-width = 6
+width = 5
 height = 16
 active_ticks = 5
 endless = true

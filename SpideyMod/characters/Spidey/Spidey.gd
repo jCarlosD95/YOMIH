@@ -3,11 +3,15 @@ extends Fighter
 var cling_x = 0
 var cling_y = 0
 
+var swingkick_anchor_x = 0
+var swingkick_anchor_y = 0
+
 #Used in WebZip.gd and other Web Zip-related scripts
 var grappling_hook_projectile = null
 var used_grappling_hook = false
 var pulling = false
 
+var web_anchor = null
 var lasso_projectile = null
 
 
@@ -75,6 +79,7 @@ func _draw():
 #		draw_line(to_local(get_center_position_float()), to_local(hook.get_center_position_float()), Color("#ffffff"), 2.0)
 	lineDraw(grappling_hook_projectile)
 	lineDraw(lasso_projectile)	
+	lineDraw(web_anchor)
 
 func lineDraw(object):
 	var obj = obj_from_name(object)

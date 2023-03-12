@@ -28,7 +28,16 @@ animations = [ {
 material = SubResource( 1 )
 
 [node name="Sprite" parent="Flip" index="0"]
+position = Vector2( -2, 0 )
 frames = SubResource( 2 )
+
+[node name="CollisionBox" parent="." index="2"]
+width = 12
+height = 12
+
+[node name="Hurtbox" parent="." index="3"]
+width = 12
+height = 12
 
 [node name="Default" parent="StateMachine" index="0"]
 rotation = -0.00422637
