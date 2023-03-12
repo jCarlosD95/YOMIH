@@ -416,7 +416,6 @@ character_portrait = ExtResource( 80 )
 player_extra_params_scene = ExtResource( 95 )
 
 [node name="Sprite" parent="Flip" index="0"]
-visible = false
 material = SubResource( 2 )
 frames = SubResource( 3 )
 animation = "SpideyDiveKick"
