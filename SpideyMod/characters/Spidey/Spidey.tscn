@@ -416,7 +416,6 @@ character_portrait = ExtResource( 80 )
 player_extra_params_scene = ExtResource( 95 )
 
 [node name="Sprite" parent="Flip" index="0"]
-visible = false
 material = SubResource( 2 )
 frames = SubResource( 3 )
 animation = "SpideyDiveKick"
@@ -857,7 +856,7 @@ force_speed = "1"
 force_tick = 6
 enter_force_dir_x = "3"
 enter_force_dir_y = "0"
-enter_force_speed = "4"
+enter_force_speed = "6"
 reset_momentum = true
 projectile_scene = ExtResource( 132 )
 projectile_pos_x = 30
@@ -892,9 +891,9 @@ hitlag_ticks = 6
 victim_hitlag = 6
 damage_proration = 1
 hit_sound = ExtResource( 113 )
-knockback = "5.0"
 start_tick = 5
-active_ticks = 8
+active_ticks = 10
+always_on = true
 
 [node name="HurtboxState" type="Node2D" parent="StateMachine/SwingKick" index="1"]
 z_index = 1000
