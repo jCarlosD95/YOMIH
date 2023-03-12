@@ -85,7 +85,11 @@ func _draw():
 	lineDraw(grappling_hook_projectile, location.x, location.y)
 	lineDraw(lasso_projectile, location.x, location.y)	
 	#Draw a line to Spidey's hand instead of to his center
-	lineDraw(web_anchor, -6, -38)
+	#Spidey's hand changes location depending on which way he's facing
+	if get_facing() == "Right":
+		lineDraw(web_anchor, -6, -38)
+	else:
+		lineDraw(web_anchor, 6, -38)
 
 func lineDraw(object,x,y):
 	var obj = obj_from_name(object)
