@@ -6,3 +6,6 @@ func _on_hit_something(obj, _hitbox):
 		queue_state_change("Holding")
 	else :
 		._on_hit_something(obj, _hitbox)
+
+func _tick():
+	host.update_rotation()
