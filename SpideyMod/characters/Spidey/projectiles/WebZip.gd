@@ -1,7 +1,7 @@
 extends BaseProjectile
 
 const MAX_HEIGHT = 800
-const MAX_DISTANCE = 190
+var MAX_DISTANCE = 190.0
 var is_max_distance = false
 
 class_name WebZip

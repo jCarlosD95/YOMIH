@@ -95,3 +95,5 @@ func lineDraw(object,x,y):
 	var obj = obj_from_name(object)
 	if obj:
 		draw_line(Vector2(x,y), to_local(obj.get_center_position_float()), Color("#ffffff"), 2.0)
+
+

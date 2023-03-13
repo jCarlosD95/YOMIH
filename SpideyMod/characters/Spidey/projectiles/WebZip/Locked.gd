@@ -9,7 +9,7 @@ func _frame_0():
 	pass
 
 func _tick():
-	host.update_rotation()
+	host.sprite.rotation = 0
 	var attached_to = host.obj_from_name(host.attached_to)
 	#NOTE: Add an "and isn't max_distance
 	if attached_to != null:
