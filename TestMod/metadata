@@ -1,0 +1,12 @@
+{
+    "name": "Test",
+    "friendly_name": "Test",
+    "description": "TestChar!",
+    "author": "BettyPunkCrocker",
+    "version": "0.1",
+    "link": "",
+    "id": "00001",
+    "overwrites": false,
+    "requires": ["char_loader"],
+    "priority": 0
+}
