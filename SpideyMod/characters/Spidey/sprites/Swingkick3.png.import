@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Swingkick3.png-3a498e3ee9928c42754a89f50c293ecb.stex"
+path="res://.import/Swingkick3.png-29cdde9743c9b5ae26b64caf0db87dce.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpideyMod/characters/Spidey/sprites/Swingkick3.png"
-dest_files=[ "res://.import/Swingkick3.png-3a498e3ee9928c42754a89f50c293ecb.stex" ]
+source_file="res://SpideyMod/characters/Spidey/Sprites/Swingkick3.png"
+dest_files=[ "res://.import/Swingkick3.png-29cdde9743c9b5ae26b64caf0db87dce.stex" ]
 
 [params]
 

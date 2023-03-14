@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/WallCling.png-f265a31ad939974c6a0b88deb67e3801.stex"
+path="res://.import/WallCling.png-d6ff9423fbb1e67d60e97759472cf254.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpideyMod/characters/Spidey/sprites/WallCling.png"
-dest_files=[ "res://.import/WallCling.png-f265a31ad939974c6a0b88deb67e3801.stex" ]
+source_file="res://SpideyMod/characters/Spidey/Sprites/WallCling.png"
+dest_files=[ "res://.import/WallCling.png-d6ff9423fbb1e67d60e97759472cf254.stex" ]
 
 [params]
 

@@ -1,0 +1,14 @@
+{
+  "author": "BettyPunkCrocker",
+  "description": "Does whatever a spider can!",
+  "friendly_name": "Spidey",
+  "id": "12345",
+  "link": "",
+  "name": "Spidey",
+  "overwrites": false,
+  "priority": 0,
+  "requires": [
+    "char_loader"
+  ],
+  "version": "0.1"
+}

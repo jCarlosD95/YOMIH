@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/AirKick.png-c2cb18a154720056576b9f505a44c2cf.stex"
+path="res://.import/AirKick.png-4a4fbdc614888cee036d30f3d1a305c0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpideyMod/characters/Spidey/sprites/AirKick.png"
-dest_files=[ "res://.import/AirKick.png-c2cb18a154720056576b9f505a44c2cf.stex" ]
+source_file="res://SpideyMod/characters/Spidey/Sprites/AirKick.png"
+dest_files=[ "res://.import/AirKick.png-4a4fbdc614888cee036d30f3d1a305c0.stex" ]
 
 [params]
 
