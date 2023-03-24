@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=2]
+[gd_scene load_steps=140 format=2]
 
 [ext_resource path="res://characters/BaseChar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SpideyMod/characters/Spidey/Spidey.gd" type="Script" id=2]
@@ -132,7 +132,10 @@
 [ext_resource path="res://SpideyMod/characters/Spidey/Sprites/Swingkick2.png" type="Texture" id=130]
 [ext_resource path="res://SpideyMod/characters/Spidey/Sprites/Swingkick3.png" type="Texture" id=131]
 [ext_resource path="res://SpideyMod/characters/Spidey/projectiles/WebAnchor.tscn" type="PackedScene" id=132]
+[ext_resource path="res://SpideyMod/characters/Spidey/States/AirKick.gd" type="Script" id=133]
+[ext_resource path="res://SpideyMod/characters/Spidey/Sprites/airkick2.png" type="Texture" id=134]
 [ext_resource path="res://characters/BaseChar.gdshader" type="Shader" id=135]
+[ext_resource path="res://ui/ActionSelector/StateIcons/jump_kick.png" type="Texture" id=136]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -162,6 +165,11 @@ animations = [ {
 "frames": [ ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 30 ), ExtResource( 28 ) ],
 "loop": true,
 "name": "AirFireball",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 134 ) ],
+"loop": true,
+"name": "AirKick",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 51 ), ExtResource( 51 ), ExtResource( 51 ), ExtResource( 51 ), ExtResource( 57 ), ExtResource( 57 ), ExtResource( 43 ) ],
@@ -408,7 +416,6 @@ animations = [ {
 [node name="Spidey" instance=ExtResource( 1 )]
 material = SubResource( 1 )
 script = ExtResource( 2 )
-gravity = "0.8"
 max_air_speed = "10"
 max_fall_speed = "15"
 num_air_movements = 4
@@ -418,7 +425,7 @@ player_extra_params_scene = ExtResource( 95 )
 [node name="Sprite" parent="Flip" index="0"]
 material = SubResource( 2 )
 frames = SubResource( 3 )
-animation = "SpideyDiveKick"
+animation = "AirKick"
 playing = true
 __meta__ = {
 "_edit_group_": true
@@ -561,7 +568,6 @@ __meta__ = {
 "_editor_description_": ""
 }
 endless = true
-reset_momentum = true
 title = "Reel"
 type = 2
 button_texture = ExtResource( 106 )
@@ -574,6 +580,7 @@ interrupt_from_string = "Lasso"
 [node name="ThrowBox" type="Node2D" parent="StateMachine/WPReel" index="0"]
 script = ExtResource( 98 )
 increment_combo = false
+dir_y = "1.0"
 knockdown_extends_hitstun = false
 active_ticks = 1
 
@@ -605,7 +612,8 @@ title = "Spider Sting"
 type = 2
 button_texture = ExtResource( 120 )
 interrupt_from_string = "Grounded
-GroundedAttack"
+GroundedAttack
+"
 interrupt_into_string = "GroundedAttack
 AerialAttack"
 hit_cancel_into_string = "GroundedAttack
@@ -862,7 +870,7 @@ projectile_scene = ExtResource( 132 )
 projectile_pos_x = 30
 projectile_pos_y = -150
 title = "Swing Kick"
-type = 1
+type = 2
 button_texture = ExtResource( 124 )
 air_type = 2
 uses_air_movement = true
@@ -905,4 +913,57 @@ height = 16
 active_ticks = 5
 endless = true
 
-[node name="Node2D" type="Node2D" parent="StateMachine" index="65"]
+[node name="AirKick" type="Node2D" parent="StateMachine" index="65"]
+script = ExtResource( 133 )
+__meta__ = {
+"_editor_description_": ""
+}
+apply_forces = true
+apply_fric = true
+apply_grav = true
+sprite_animation = "AirKick"
+anim_length = 8
+enter_force_dir_x = "3"
+enter_force_speed = "2.0"
+title = "Kick"
+type = 1
+button_texture = ExtResource( 136 )
+air_type = 1
+interrupt_from_string = "Aerial
+AerialAttack"
+interrupt_into_string = "Grounded
+Aerial"
+hit_cancel_into_string = "GroundedAttack
+GroundedSpecial
+GroundedSuper
+AerialAttack
+AerialSpecial
+AerialSuper
+Jump"
+
+[node name="Hitbox" type="Node2D" parent="StateMachine/AirKick" index="0"]
+z_index = 1000
+script = ExtResource( 104 )
+x = 14
+y = -15
+width = 13
+height = 11
+damage = 70
+hitstun_ticks = 20
+hitlag_ticks = 6
+victim_hitlag = 6
+damage_proration = 1
+hit_sound = ExtResource( 113 )
+start_tick = 5
+active_ticks = 10
+always_on = true
+
+[node name="HurtboxState" type="Node2D" parent="StateMachine/AirKick" index="1"]
+z_index = 1000
+script = ExtResource( 126 )
+x = -3
+y = -16
+width = 10
+height = 13
+active_ticks = 5
+endless = true

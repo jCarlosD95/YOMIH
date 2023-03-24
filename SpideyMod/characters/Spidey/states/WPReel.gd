@@ -39,6 +39,7 @@ func _exit():
 	if host.objs_map.has(host.lasso_projectile):
 		host.objs_map[host.lasso_projectile].disable()
 		host.lasso_projectile = null
+		host.set_vel(host.get_vel().x,host.opponent.get_vel().y)
 	if not grabbed:
 		host.opponent.state_machine.queue_state("Wait")
 			
