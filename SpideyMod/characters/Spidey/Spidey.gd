@@ -100,32 +100,17 @@ func _draw():
 	lineDraw(lasso_projectile, location.x, location.y)	
 	#Draw a line to Spidey's hand instead of to his center
 	#Spidey's hand changes location depending on which way he's facing
-	#if obj_from_name(web_anchor):
 	if get_facing() == "Right":
 		lineDraw(web_anchor, -6, -38)
 	else:
 		lineDraw(web_anchor, 6, -38)
 
 func lineDraw(object,x,y):
-	#this "if" Doesn't work in itch.io 
+	#this "if" Doesn't work in itch.io because obj_from_name()isn't in BaseObj.gd in itch.io version
 	#if obj_from_name(object):
-	#This "if" causes web line to last too long
-	#if object:
 	if object:	
 		var obj = objs_map[object]
+		#For some reason, you need this "if" because an object can exist after it's been disabled.
 		if not obj.disabled:
-			var obj_pos = obj.get_pos()
 			draw_line(Vector2(x,y), to_local(obj.get_center_position_float()), Color("#ffffff"), 2.0)
-#			var draw_target = to_local(Vector2(obj_pos.x, obj_pos.y))
-#			draw_target -= draw_target.normalized() * 8
-#			draw_line(Vector2(x, y), draw_target, Color("ffffff"), 2.0, false)
-
-
-##	#Had to comment it out because it didn't work in Itch.io
-#func lineDraw(object,x,y):	
-#	#IDK why, but the object seems to outlast the name? hence, I do this instead of "if obj
-#	if obj_from_name(object):
-#		var obj = objs_map[object]
-#		draw_line(Vector2(x,y), to_local(obj.get_center_position_float()), Color("#ffffff"), 2.0)
-#
 

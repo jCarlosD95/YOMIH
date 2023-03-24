@@ -31,8 +31,9 @@ func process_projectile(projectile):
 	
 	#Use max_x and max_y instead of data.x and data.y to ensure that the web always travels at max velocity.
 	var force = xy_to_dir(max_x, max_y, SPEED)
-	var vel = host.get_vel()
-	projectile.apply_force(fixed.add(vel.x, force.x), fixed.add(vel.y, force.y))
+#	var vel = host.get_vel()
+#	projectile.apply_force(fixed.add(vel.x, force.x), fixed.add(vel.y, force.y))
+	projectile.apply_force(force.x, force.y)
 	host.grappling_hook_projectile = projectile.obj_name
 	projectile.start_y = host.get_pos().y
 
