@@ -19,8 +19,9 @@ func process_projectile(projectile):
 
 	#This getx max x and max y, which have the same slope when plotted through (0,0) as data.x and data.y do when plotted through (0,0)
 	var max_x = cos(radians(data.x,data.y))*100
-	if data.x < 0:
-		max_x = max_x *-1
+	#The below lines were supposed to ensure Spidey's webs shoot in the right direction, but it did the opposite
+	#if data.x < 0 or host.get_facing_int() < 0:
+	#	max_x = max_x * -1
 	var max_y = sin(radians(data.x,data.y))*100
 	if data.y < 0:
 		max_y = max_y * -1
