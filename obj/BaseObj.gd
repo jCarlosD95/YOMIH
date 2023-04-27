@@ -195,6 +195,7 @@ func change_state(state_name, state_data = null, enter = true, exit = true):
 
 func obj_from_name(name):
 	if name is String and name in objs_map:
+		print_debug("NAME: ", name)
 		var obj = objs_map[name]
 		if obj != null:
 			if not obj.disabled:
