@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SpideyDiveKick.png-a81f982553c31c80bbbab0140e5a8db2.stex"
+path="res://.import/SpideyDiveKick.png-9143015b4bf08a8677ce208249fbe2f3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpideyMod/characters/Spidey/Sprites/SpideyDiveKick.png"
-dest_files=[ "res://.import/SpideyDiveKick.png-a81f982553c31c80bbbab0140e5a8db2.stex" ]
+source_file="res://SpideyMod/characters/Spidey/sprites/SpideyDiveKick.png"
+dest_files=[ "res://.import/SpideyDiveKick.png-9143015b4bf08a8677ce208249fbe2f3.stex" ]
 
 [params]
 

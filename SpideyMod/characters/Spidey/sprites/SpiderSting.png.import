@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SpiderSting.png-8d6709f0c2451f49b72aff3ef9d7c8c5.stex"
+path="res://.import/SpiderSting.png-e13d43167297b02f8c01e12d34993615.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpideyMod/characters/Spidey/Sprites/SpiderSting.png"
-dest_files=[ "res://.import/SpiderSting.png-8d6709f0c2451f49b72aff3ef9d7c8c5.stex" ]
+source_file="res://SpideyMod/characters/Spidey/sprites/SpiderSting.png"
+dest_files=[ "res://.import/SpiderSting.png-e13d43167297b02f8c01e12d34993615.stex" ]
 
 [params]
 

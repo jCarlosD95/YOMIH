@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SpideyIdle.png-b429dc92eaf77ea9161047a36323bd3a.stex"
+path="res://.import/SpideyIdle.png-a078407c5d8c8ee26730aa71e04926d0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpideyMod/characters/Spidey/Sprites/SpideyIdle.png"
-dest_files=[ "res://.import/SpideyIdle.png-b429dc92eaf77ea9161047a36323bd3a.stex" ]
+source_file="res://SpideyMod/characters/Spidey/sprites/SpideyIdle.png"
+dest_files=[ "res://.import/SpideyIdle.png-a078407c5d8c8ee26730aa71e04926d0.stex" ]
 
 [params]
 
